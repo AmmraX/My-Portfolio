@@ -1,3 +1,1896 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ammra Rizwan | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --secondary: #f50057;
+            --dark: #0a0a1a;
+            --dark-2: #12122a;
+            --dark-3: #1a1a3a;
+            --light: #e0e0ff;
+            --text: #c0c0e0;
+            --accent: #00d4ff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(108, 99, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+        /* ===== PARTICLES BACKGROUND ===== */
+        #particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 26, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.7rem 2rem;
+            box-shadow: 0 4px 30px rgba(108, 99, 255, 0.15);
+        }
+
+        .logo {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--light);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== HERO SECTION ===== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-greeting {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.2s;
+        }
+
+        .hero-name {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.4s;
+        }
+
+        .hero-name .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.6s;
+        }
+
+        .typed-wrapper {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.8s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 1s;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(108, 99, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(108, 99, 255, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .hero-socials {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 1.2s;
+        }
+
+        .hero-socials a {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .hero-socials a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--primary);
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 2s, bounce 2s infinite 2s;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-tag {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .section-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* ===== ABOUT ===== */
+        #about {
+            background: var(--dark-2);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+    .about-image-placeholder {
+    width: 280px;
+    height: 280px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(108, 99, 255, 0.3);
+    background: linear-gradient(135deg, var(--primary), var(--dark-3));
+    }
+
+  .about-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    position: relative;
+    z-index: 1; 
+}
+
+        .about-image-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            z-index: -1;
+        }
+
+        .about-badge {
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    padding: 0.6rem 1rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-family: 'Fira Code', monospace;
+    white-space: nowrap;
+    z-index: 10; /* Ensures the badge sits on top of the newly added image */
+}
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            color: var(--text);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text);
+            margin-top: 0.3rem;
+        }
+
+        /* ===== SKILLS ===== */
+        #skills {
+            background: var(--dark);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.1);
+        }
+
+        .skill-cat-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-cat-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .skill-cat-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(108, 99, 255, 0.1);
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            color: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(108, 99, 255, 0.3);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        /* ===== PROJECTS ===== */
+        #projects {
+            background: var(--dark-2);
+        }
+
+        .projects-filter {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(108, 99, 255, 0.15);
+        }
+
+        .project-card-top {
+            padding: 1.8rem;
+            flex: 1;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .project-year {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: rgba(0, 212, 255, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .project-highlights {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .project-highlights li {
+            font-size: 0.82rem;
+            color: var(--text);
+            padding: 0.2rem 0;
+            padding-left: 1rem;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .project-highlights li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            padding: 1rem 1.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .tech-badge {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.72rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+        }
+
+                /* Project Links */
+        .project-links {
+            display: flex;
+            gap: 0.8rem;
+            padding: 1rem 1.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: transparent;
+        }
+
+        .project-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .project-link.live {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            color: #fff;
+        }
+
+        .project-link.live:hover {
+            opacity: 0.9;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+                /* Tableau Button */
+        .project-link.tableau {
+            background: linear-gradient(135deg, #E97627, #C8581A);
+            border: none;
+            color: #fff;
+        }
+
+        .project-link.tableau:hover {
+            opacity: 0.9;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 118, 39, 0.4);
+        }
+
+        /* ===== EXPERIENCE ===== */
+        #experience {
+            background: var(--dark);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+
+        .timeline-item {
+            padding-left: 60px;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 11px;
+            top: 6px;
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: 3px solid var(--dark);
+            box-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
+        }
+
+        .timeline-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.1);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .timeline-period {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: rgba(0, 212, 255, 0.1);
+            padding: 0.2rem 0.7rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            white-space: nowrap;
+        }
+
+        .timeline-org {
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-list {
+            list-style: none;
+        }
+
+        .timeline-list li {
+            font-size: 0.85rem;
+            color: var(--text);
+            padding: 0.25rem 0;
+            padding-left: 1rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .timeline-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* ===== EDUCATION ===== */
+        #education {
+            background: var(--dark-2);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .edu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .edu-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.15);
+        }
+
+        .edu-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .edu-degree {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+
+        .edu-school {
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .edu-period {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+
+        /* ===== CONTACT ===== */
+        #contact {
+            background: var(--dark);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .contact-item-icon {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text span {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .contact-item-text p {
+            font-size: 0.85rem;
+            color: var(--light);
+            margin: 0;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.0rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+             gap: 1.0rem;
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 0.8rem 1rem;
+            gap: 1.0rem;
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            position: relative;
+            z-index: 1;
+            background: var(--dark-2);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        .footer-text span {
+            color: var(--primary);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10, 10, 26, 0.98);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .about-image-wrapper { justify-content: center; }
+            .about-stats { grid-template-columns: repeat(3, 1fr); }
+
+            .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .about-stats { grid-template-columns: 1fr 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Particles Canvas -->
+<canvas id="particles"></canvas>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+    <a href="#hero" class="logo">Ammra Rizwan</a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+    <div class="hero-content">
+        <h1 class="hero-name">
+            I'm <span class="highlight">Ammra Rizwan</span>
+        </h1>
+        <p class="hero-title">
+            <span class="typed-wrapper"><span id="typed"></span><span style="animation: blink 1s infinite;">|</span></span>
+        </p>
+        <p class="hero-desc">
+            Motivated Data Science undergraduate building full-stack web apps, mobile applications, and data analytics pipelines. 
+            Bridging software development with data-driven decision making from Sri Lanka 🇱🇰
+        </p>
+        <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-outline">Get In Touch</a>
+        </div>
+        <div class="hero-socials">
+            <a href="https://linkedin.com/in/ammrarizwan" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/AmmraX" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:ammrarizwan18@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+94771400030" title="Phone"><i class="fas fa-phone"></i></a>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title">About Me</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-image-wrapper reveal">
+                <div class="about-image-placeholder">
+                    <img src="retouch_2025100318192636.png" alt="Portrait of Ammra Rizwan" class="profile-image">
+                    <div class="about-badge">Colombo, Sri Lanka</div>
+                </div>
+            </div>
+            <div class="about-text reveal">
+                <h3>Junior Software Developer & Data Science Undergraduate</h3>
+                <p>
+                    I'm a passionate Data Science undergraduate at Cardiff Metropolitan University with hands-on experience 
+                    building full-stack web applications, mobile apps, and data analytics pipelines across <strong style="color:#fff;">9+ projects</strong>.
+                </p>
+                <p>
+                    Proficient in <strong style="color:var(--accent);">Python, Java, JavaScript, and R</strong>, with practical exposure 
+                    to the MERN stack, Android development, and data visualization tools. I bring a unique edge combining 
+                    a commerce background with technical depth.
+                </p>
+                <p>
+                    Beyond code, I'm a proven leader with 4+ years of experience in international project coordination, 
+                    event management, and community initiatives.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">9+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6+</div>
+                        <div class="stat-label">Languages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4+</div>
+                        <div class="stat-label">Yrs Leadership</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category reveal">
+                <div class="skill-cat-header">
+                    <div class="skill-cat-icon"><i class="fas fa-code"></i></div>
+                    <span class="skill-cat-title">Languages</span>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">PHP</span>
+                </div>
+            </div>
+            <div class="skill-category reveal">
+                <div class="skill-cat-header">
+                    <div class="skill-cat-icon"><i class="fas fa-globe"></i></div>
+                    <span class="skill-cat-title">Web & Frameworks</span>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">.NET</span>
+                </div>
+            </div>
+            <div class="skill-category reveal">
+                <div class="skill-cat-header">
+                    <div class="skill-cat-icon"><i class="fas fa-chart-bar"></i></div>
+                    <span class="skill-cat-title">Data & Analytics</span>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">SQLite</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">Excel</span>
+                </div>
+            </div>
+            <div class="skill-category reveal">
+                <div class="skill-cat-header">
+                    <div class="skill-cat-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <span class="skill-cat-title">Mobile & Desktop</span>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Android (Java)</span>
+                    <span class="skill-tag">.NET (C#)</span>
+                    <span class="skill-tag">SQLite</span>
+                </div>
+            </div>
+            <div class="skill-category reveal">
+                <div class="skill-cat-header">
+                    <div class="skill-cat-icon"><i class="fas fa-tools"></i></div>
+                    <span class="skill-cat-title">Tools & Design</span>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git/GitHub</span>
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Postman</span>
+                    <span class="skill-tag">Canva</span>
+                    <span class="skill-tag">Adobe PS</span>
+                    <span class="skill-tag">Adobe AI</span>
+                </div>
+            </div>
+            <div class="skill-category reveal">
+                <div class="skill-cat-header">
+                    <div class="skill-cat-icon"><i class="fas fa-sitemap"></i></div>
+                    <span class="skill-cat-title">Methodologies</span>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Agile/Scrum</span>
+                    <span class="skill-tag">SDLC</span>
+                    <span class="skill-tag">OOP</span>
+                    <span class="skill-tag">OOAD</span>
+                    <span class="skill-tag">REST API</span>
+                    <span class="skill-tag">SOA</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="projects-filter reveal">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="data">Data</button>
+            <button class="filter-btn" data-filter="mobile">Mobile</button>
+            <button class="filter-btn" data-filter="desktop">Desktop</button>
+        </div>
+
+        <div class="project-card reveal" data-category="data">
+        <div class="project-card-top">
+        <div class="project-header">
+            <div class="project-icon">📊</div>
+            <span class="project-year">2026</span>
+        </div>
+        <h3 class="project-title">Student Data Analytics</h3>
+        <p class="project-desc">
+            Comprehensive student performance analysis with 
+            interactive visualizations and actionable insights 
+            for school leadership.
+        </p>
+        <ul class="project-highlights">
+            <li>Analyzed exam score data for 1,000 students with data cleaning & outlier management</li><li>Engineered "Average Score" feature & binary classification for student performance</li>
+            <li>Identified key drivers: school meal access & parental education via correlation analysis</li><li>Delivered findings via interactive Tableau dashboard to school leadership</li>
+        </ul>
+    </div>
+    <div class="project-tech">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Pandas</span>
+        <span class="tech-badge">Tableau</span>
+        <span class="tech-badge">NumPy</span>
+    </div>
+    <div class="project-links">
+        <a href="https://public.tableau.com/views/Student_Performance_17735237139390/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link tableau">
+            <i class="fas fa-chart-bar"></i> Tableau
+        </a>
+    </div>
+</div>
+
+            <div class="project-card reveal" data-category="web">
+                <div class="project-card-top">
+                    <div class="project-header">
+                        <div class="project-icon">🐾</div>
+                        <span class="project-year">2025</span>
+                    </div>
+                    <h3 class="project-title">PawTrack — Lost Pet Recovery Platform</h3>
+                    <p class="project-desc">Scalable MERN stack web application helping reunite lost pets with their owners via real-time mapping.</p>
+                    <ul class="project-highlights">
+                        <li>Led backend architecture using MongoDB, Express & Node.js with OOAD principles</li>
+                        <li>Built interactive real-time map with advanced filtering & live push notifications</li>
+                        <li>Managed full Agile SDLC with iterative sprints & collaborative code reviews</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">MongoDB</span>
+                    <span class="tech-badge">Express</span>
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Node.js</span>
+                    <span class="tech-badge">Agile</span>
+                </div>
+                <div class="project-links">
+                <a href="https://github.com/AmmraX/pawtrack" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+                </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" data-category="web">
+                <div class="project-card-top">
+                    <div class="project-header">
+                        <div class="project-icon">🛒</div>
+                        <span class="project-year">2025</span>
+                    </div>
+                    <h3 class="project-title">Gadget Shop — E-Commerce Platform</h3>
+                    <p class="project-desc">Full-featured e-commerce platform with Service-Oriented Architecture and multi-supplier REST API integration.</p>
+                    <ul class="project-highlights">
+                        <li>Architected SOA using .NET for modularity & long-term maintainability</li>
+                        <li>Built & integrated custom REST APIs for 3 external suppliers with automated quoting</li>
+                        <li>Developed full client-facing app for browsing, purchasing & logistics management</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">C#</span>
+                    <span class="tech-badge">.NET</span>
+                    <span class="tech-badge">REST API</span>
+                    <span class="tech-badge">HTML</span>
+                    <span class="tech-badge">CSS</span>
+                    <span class="tech-badge">JavaScript</span>
+                </div>
+                <div class="project-links">
+                <a href="https://github.com/AmmraX/gadget-shop" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+                </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" data-category="mobile">
+                <div class="project-card-top">
+                    <div class="project-header">
+                        <div class="project-icon">🏨</div>
+                        <span class="project-year">2025</span>
+                    </div>
+                    <h3 class="project-title">LuxeVista — Luxury Resort Mobile App</h3>
+                    <p class="project-desc">Full-featured Android app for resort bookings and service scheduling with intuitive UI.</p>
+                    <ul class="project-highlights">
+                        <li>Developed full Android mobile application for resort bookings using Java & SQLite</li>
+                        <li>Designed responsive, intuitive UI with secure database validation</li>
+                        <li>Conducted extensive system testing for performance optimization</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">SQLite</span>
+                    <span class="tech-badge">Android</span>
+                </div>
+                <div class="project-links">
+                <a href="https://github.com/AmmraX/Luxe-Vista.git" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+                </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" data-category="web">
+                <div class="project-card-top">
+                    <div class="project-header">
+                        <div class="project-icon">💪</div>
+                        <span class="project-year">2025</span>
+                    </div>
+                    <h3 class="project-title">FitZone — Fitness Centre Web App</h3>
+                    <p class="project-desc">Secure fitness centre management system with authentication, bookings, and staff management.</p>
+                    <ul class="project-highlights">
+                        <li>Implemented secure user authentication & booking system with session management</li>
+                        <li>Built backend staff management system with normalized database schema</li>
+                        <li>Designed secure user data storage with comprehensive input validation</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">PHP</span>
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">HTML</span>
+                    <span class="tech-badge">CSS</span>
+                </div>
+                <div class="project-links">
+                <a href="https://github.com/AmmraX/fitzone" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+                </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" data-category="desktop">
+                <div class="project-card-top">
+                    <div class="project-header">
+                        <div class="project-icon">🐶</div>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <h3 class="project-title">The Paws Shop — Pet Store System</h3>
+                    <p class="project-desc">Java desktop application for pet store inventory and transaction management using core OOP principles.</p>
+                    <ul class="project-highlights">
+                        <li>Applied encapsulation, inheritance & polymorphism for inventory management</li>
+                        <li>Digitized manual transaction workflows, reducing processing steps</li>
+                        <li>Improved operational efficiency across the store's day-to-day operations</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">OOP</span>
+                </div>
+                <div class="project-links">
+                <a href="https://github.com/AmmraX/ThePawsShop.git" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+                </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" data-category="data">
+                <div class="project-card-top">
+                    <div class="project-header">
+                        <div class="project-icon">🚗</div>
+                        <span class="project-year">2025</span>
+                    </div>
+                    <h3 class="project-title">Automotive Procurement Analytics</h3>
+                    <p class="project-desc">Multivariate analysis on vehicle datasets to support procurement decision-making with data visualizations.</p>
+                    <ul class="project-highlights">
+                        <li>Performed multivariate analysis to identify cost-driving features for procurement</li>
+                        <li>Discovered vehicle age & horsepower as primary pricing determinants</li>
+                        <li>Communicated findings through compelling data visualizations in R</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">R</span>
+                    <span class="tech-badge">Data Visualization</span>
+                    <span class="tech-badge">Statistics</span>
+                </div>
+                <div class="project-links">
+                <a href="https://github.com/AmmraX/TransportAnalysis.git" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+                </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" data-category="web">
+                <div class="project-card-top">
+                    <div class="project-header">
+                        <div class="project-icon">⛓️</div>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <h3 class="project-title">Blockchain Theory & Research</h3>
+                    <p class="project-desc">Group research project exploring consensus protocols and real-world blockchain applications across industries.</p>
+                    <ul class="project-highlights">
+                        <li>Researched 5 consensus protocols (PoW, PoS, DPoS, PBFT, PoA) with comparative analysis</li>
+                        <li>Investigated blockchain applications across 3 industries</li>
+                        <li>Produced digital modelling illustrations in Python and Solidity</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">Solidity</span>
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Python</span>
+                </div>
+                <div class="project-links">
+                <a href="https://github.com/AmmraX/Asset-Tokenization.git" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+                </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" data-category="desktop">
+                <div class="project-card-top">
+                    <div class="project-header">
+                        <div class="project-icon">⚾</div>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <h3 class="project-title">Upcountry Warriors — Sports Data Manager</h3>
+                    <p class="project-desc">C++ data management application for baseball player records with structured file I/O.</p>
+                    <ul class="project-highlights">
+                        <li>Developed data management app for baseball player records in C++</li>
+                        <li>Implemented structured file I/O for persistent data storage</li>
+                        <li>Conducted rigorous unit testing for reliability & accuracy</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">C++</span>
+                    <span class="tech-badge">File I/O</span>
+                    <span class="tech-badge">Unit Testing</span>
+                </div>
+                <div class="project-links">
+                <a href="https://github.com/AmmraX/Upcountry-Warriors.git" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+                </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title">Experience</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">International Service Director</h3>
+                        <span class="timeline-period">May 2024 – Jun 2025</span>
+                    </div>
+                    <p class="timeline-org">Rotaract Club, ICBT Campus, Sri Lanka</p>
+                    <ul class="timeline-list">
+                        <li>Led a team of 5–10 members to plan and execute 5+ international collaborative projects, coordinating with Rotaract clubs across multiple countries</li>
+                        <li>Initiated and negotiated a formal twin-club partnership with the Rotaract Club of Charumati</li>
+                        <li>Managed end-to-end project logistics including scheduling, stakeholder communication, and post-event reporting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Vice President</h3>
+                        <span class="timeline-period">2022/23</span>
+                    </div>
+                    <p class="timeline-org">Interact Club, St. Paul's Girls' School, Milagiriya</p>
+                    <ul class="timeline-list">
+                        <li>Oversaw planning and execution of 20+ community projects, coordinating multi-disciplinary teams</li>
+                        <li>Led the club's annual installation ceremony from concept to completion</li>
+                        <li>Directed production of the "Magora" E-magazine, overseeing content planning and design output</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Assistant Treasurer</h3>
+                        <span class="timeline-period">2021/22</span>
+                    </div>
+                    <p class="timeline-org">Interact Club, St. Paul's Girls' School, Milagiriya</p>
+                    <ul class="timeline-list">
+                        <li>Maintained accurate financial records and managed budgets across all club activities</li>
+                        <li>Ensured fiscal accountability for a full year of programming</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Club Service Director</h3>
+                        <span class="timeline-period">2020/21</span>
+                    </div>
+                    <p class="timeline-org">Interact Club, St. Paul's Girls' School, Milagiriya</p>
+                    <ul class="timeline-list">
+                        <li>Conceptualized and delivered 10+ community service projects, several introduced as novel initiatives</li>
+                        <li>Demonstrated initiative and independent problem-solving with no prior template</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">School Leadership Roles</h3>
+                        <span class="timeline-period">2019 – 2024</span>
+                    </div>
+                    <p class="timeline-org">St. Paul's Girls' School, Milagiriya</p>
+                    <ul class="timeline-list">
+                        <li><strong style="color:#fff;">Senior Prefect (2023/24):</strong> Key liaison between 500+ student body and school administration</li>
+                        <li><strong style="color:#fff;">Junior Prefect (2019/20):</strong> Supported senior leadership in school regulations and daily operations</li>
+                        <li><strong style="color:#fff;">Assistant Secretary, Air Arms (2019/20):</strong> Owned all club documentation and record-keeping</li>
+                        <li><strong style="color:#fff;">Editor, Young Inventors' Club (2019/20):</strong> Built club's visual identity using Adobe Illustrator & Photoshop</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title">Education</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="education-grid">
+            <div class="edu-card reveal">
+                <div class="edu-icon">🎓</div>
+                <h3 class="edu-degree">Bachelor of Science in Data Science</h3>
+                <p class="edu-school">Cardiff Metropolitan University</p>
+                <p class="edu-period">Nov 2025 – Present</p>
+            </div>
+            <div class="edu-card reveal">
+                <div class="edu-icon">💻</div>
+                <h3 class="edu-degree">Higher Diploma in Computing & Software Engineering</h3>
+                <p class="edu-school">Cardiff Metropolitan University</p>
+                <p class="edu-period">Apr 2024 – Sept 2025</p>
+            </div>
+            <div class="edu-card reveal">
+                <div class="edu-icon">📚</div>
+                <h3 class="edu-degree">GCE Advanced Level (Commerce Stream)</h3>
+                <p class="edu-school">St. Paul's Girls' School, Milagiriya</p>
+                <p class="edu-period">2023</p>
+            </div>
+            <div class="edu-card reveal">
+                <div class="edu-icon">🏫</div>
+                <h3 class="edu-degree">GCE Ordinary Level</h3>
+                <p class="edu-school">St. Paul's Girls' School, Milagiriya</p>
+                <p class="edu-period">2020</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-info reveal">
+                <h3>Let's work together!</h3>
+                <p>I'm open to internship opportunities, collaborations, and interesting projects. Feel free to reach out, I'd love to connect!</p>
+                <div class="contact-details">
+                    <a class="contact-item" href="mailto:ammrarizwan18@gmail.com">
+                        <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-item-text">
+                            <span>Email</span>
+                            <p>ammrarizwan18@gmail.com</p>
+                        </div>
+                    </a>
+                    <a class="contact-item" href="tel:+94771400030">
+                        <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-item-text">
+                            <span>Phone</span>
+                            <p>+94 771 400 030</p>
+                        </div>
+                    </a>
+                    <a class="contact-item" href="https://linkedin.com/in/ammrarizwan" target="_blank">
+                        <div class="contact-item-icon"><i class="fab fa-linkedin-in"></i></div>
+                        <div class="contact-item-text">
+                            <span>LinkedIn</span>
+                            <p>linkedin.com/in/ammrarizwan</p>
+                        </div>
+                    </a>
+                    <a class="contact-item" href="https://github.com/AmmraX" target="_blank">
+                        <div class="contact-item-icon"><i class="fab fa-github"></i></div>
+                        <div class="contact-item-text">
+                            <span>GitHub</span>
+                            <p>github.com/AmmraX</p>
+                        </div>
+                    </a>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-item-text">
+                            <span>Location</span>
+                            <p>Colombo, Sri Lanka</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form reveal">
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" id="subject" placeholder="Let's collaborate!">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="message" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;font-size:0.95rem;">
+                        Send Message <i class="fas fa-paper-plane" style="margin-left:8px;"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p class="footer-text">
+        Designed & Built by <span>Ammra Rizwan</span> &nbsp;•&nbsp; 
+        <span style="color:var(--accent);">ammrarizwan18@gmail.com</span> &nbsp;•&nbsp; 
+        Colombo, Sri Lanka 🇱🇰
+    </p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+    // ===== PARTICLES =====
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.4;
+            this.speedY = (Math.random() - 0.5) * 0.4;
+            this.opacity = Math.random() * 0.5 + 0.1;
+            this.color = Math.random() > 0.5 ? '108, 99, 255' : '0, 212, 255';
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(108, 99, 255, ${0.15 * (1 - dist / 120)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ===== TYPED EFFECT =====
+    const typedEl = document.getElementById('typed');
+    const phrases = [
+        'Junior Software Developer',
+        'Data Science Undergraduate',
+        'Full-Stack Developer',
+        'Data Analytics Enthusiast',
+        'Problem Solver'
+    ];
+    let phraseIdx = 0, charIdx = 0, deleting = false;
+
+    function typeEffect() {
+        const phrase = phrases[phraseIdx];
+        if (!deleting) {
+            typedEl.textContent = phrase.substring(0, charIdx + 1);
+            charIdx++;
+            if (charIdx === phrase.length) {
+                setTimeout(() => { deleting = true; typeEffect(); }, 2000);
+                return;
+            }
+        } else {
+            typedEl.textContent = phrase.substring(0, charIdx - 1);
+            charIdx--;
+            if (charIdx === 0) {
+                deleting = false;
+                phraseIdx = (phraseIdx + 1) % phrases.length;
+            }
+        }
+        setTimeout(typeEffect, deleting ? 50 : 80);
+    }
+    typeEffect();
+
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ===== HAMBURGER =====
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // ===== SCROLL REVEAL =====
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ===== PROJECT FILTER =====
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            projectCards.forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = 'flex';
+                    setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => { card.style.display = 'none'; }, 300);
+                }
+            });
+        });
+    });
+
+    // ===== CONTACT FORM =====
+    function handleSubmit(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        btn.textContent = '✅ Message Sent!';
+        btn.style.background = 'linear-gradient(135deg, #00c851, #007e33)';
+        btn.disabled = true;
+        setTimeout(() => {
+            btn.innerHTML = 'Send Message <i class="fas fa-paper-plane" style="margin-left:8px;"></i>';
+            btn.style.background = '';
+            btn.disabled = false;
+            e.target.reset();
+        }, 3000);
+    }
+</script>
+</body>
+=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1789,4 +3682,5 @@
     }
 </script>
 </body>
+>>>>>>> 092aff3511ff06387f8c9f5d384473c49b863fca
 </html>
